@@ -44,4 +44,11 @@ public class ProductController {
         return productService.addProduct(product);
 
     }
+
+    @PostMapping("/product")
+    public Product deleteProduct(@Valid @RequestBody Product product)
+    {
+        return productService.deleteProduct(product);
+
+    }
 }

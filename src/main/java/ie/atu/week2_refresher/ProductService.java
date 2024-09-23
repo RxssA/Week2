@@ -16,4 +16,8 @@ public class ProductService {
         productList.add(product);
         return product;
     }
+    public Product deleteProduct(Product product) {
+        productList.remove(product);
+        return product;
+    }
 }
