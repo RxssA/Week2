@@ -1,14 +1,21 @@
 package ie.atu.week2_refresher;
 
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class Week2Refresher {
+public class ProductController {
+//test
+    private  ProductService productService;
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
-    private List<Product> productList = new ArrayList<Product>();
     @GetMapping("/hello")
     public String message()
     {
@@ -27,14 +34,14 @@ public class Week2Refresher {
     @GetMapping("/product")
     public List<Product> getProductList()
     {
-        return productList;
+        return productService.getAllProducts();
     }
 
 
     @PostMapping("/product")
-    public Product addProduct(@RequestBody Product product)
+    public Product addProduct(@Valid @RequestBody Product product)
     {
-        productList.add(product);
-        return product;
+        return productService.addProduct(product);
+
     }
 }
