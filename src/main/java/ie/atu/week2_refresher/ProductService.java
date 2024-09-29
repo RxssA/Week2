@@ -19,4 +19,16 @@ public class ProductService {
         productList.remove(product);
         return product;
     }
+
+    public  Product findById(Long id) {
+        return productList.stream().filter(product -> product.getId() == id).findFirst().orElse(null);
+    }
+
+    public Product updateProduct(Long id, Product updatedProduct) {
+        Product product = findById(id);
+
+        product.setName(updatedProduct.getName());
+        product.setPrice(updatedProduct.getPrice());
+        return product;
+    }
 }
